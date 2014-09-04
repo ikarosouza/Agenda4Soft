@@ -24,17 +24,30 @@ def add_contact
 	contact = Contact.new(name, phone, email, adress)
 
 	puts "#{name} adicionado"
+
+	return contact
+end
+
+def list_contact(contact_list)
+	contact_list.each do |contact| 
+		puts contact.name
+	end
 end
 
 
-contact_list = {}
+
+contact_list = []
 main_menu
 action = gets.chomp.to_i
 
 while (action != 3)
 	
 	if(action == 1)
-		contact_list = add_contact
+		contact_list << add_contact
+	end
+
+	if(action == 2)
+		list_contact(contact_list)
 	end
 
 	main_menu
