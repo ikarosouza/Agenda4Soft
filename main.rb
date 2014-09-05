@@ -29,21 +29,23 @@ def add_contact
 end
 
 def list_contact(contact_list)
-	contact_list.each do |contact| 
-		puts contact.name
+	contact_list.each do |id, contact| 
+		puts "#{id}) #{contact.name}"
 	end
 end
 
 
 
-contact_list = []
+contact_list = Hash.new()
+id_count = 1
 main_menu
 action = gets.chomp.to_i
 
 while (action != 3)
 	
 	if(action == 1)
-		contact_list << add_contact
+		contact_list[id_count] = add_contact
+		id_count += 1
 	end
 
 	if(action == 2)
