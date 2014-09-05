@@ -6,12 +6,14 @@ class Contact
 	attr_reader :phone
 	attr_reader :email
 	attr_reader :adress
+	attr_reader :comemnts
 
 	def initialize(name, phone, email, adress)
 		@name = name
 		@phone = phone
 		@email = email
 		@adress = adress
+		@comemnts = Hash.new()
 	end
 
 	def setName (name)
@@ -28,6 +30,10 @@ class Contact
 
 	def setAdress (adress)
 		@adress = adress
+	end
+
+	def addComent (id, comment)
+		@comments[id] = comment
 	end
 
 end
