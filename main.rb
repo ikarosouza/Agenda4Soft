@@ -2,13 +2,17 @@ require_relative "Contact"
 
 
 def main_menu
+	puts "====================================="
 	puts "Digite o numero da opcao desejada"
 	puts "1 - Adicionar Contato"
 	puts "2 - Listar Contatos"
 	puts "3 - Sair"
+	puts "====================================="
+	puts ""
 end
 
 def add_contact
+	puts "====================================="
 	puts "digite o nome"
 	name = gets.chomp
 
@@ -24,14 +28,32 @@ def add_contact
 	contact = Contact.new(name, phone, email, adress)
 
 	puts "#{name} adicionado"
+	puts "====================================="
+	puts ""
 
 	return contact
 end
 
 def list_contact(contact_list)
+	puts "====================================="
 	contact_list.each do |id, contact| 
 		puts "#{id}) #{contact.name}"
 	end
+	puts "Digite o numero do contato para ver o perfil"
+	show_contact(contact_list)
+	puts "====================================="
+	puts ""
+end
+
+def show_contact(contact_list)
+	id = gets.chomp.to_i
+	puts "====================================="
+	puts "nome: #{contact_list[id].name}"
+	puts "telefone: #{contact_list[id].phone}"
+	puts "e-mail: #{contact_list[id].email}"
+	puts "endereco: #{contact_list[id].adress}"
+	puts "====================================="
+	puts ""
 end
 
 
@@ -56,4 +78,7 @@ while (action != 3)
 	action = gets.chomp.to_i
 end
 
+puts "====================================="
 puts "Volte sempre"
+puts "====================================="
+puts ""
