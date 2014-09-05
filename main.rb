@@ -11,6 +11,15 @@ def main_menu
 	puts ""
 end
 
+def contact_menu
+	puts ""
+	puts "Digite o numero da opcao desejada"
+	puts "1 - Deixar Comentario"
+	puts "2 - Listar Comentario"
+	puts "3 - Deletar Contato"
+	puts ""
+end
+
 def add_contact
 	puts "====================================="
 	puts "digite o nome"
@@ -52,14 +61,35 @@ def show_contact(contact_list)
 	puts "telefone: #{contact_list[id].phone}"
 	puts "e-mail: #{contact_list[id].email}"
 	puts "endereco: #{contact_list[id].adress}"
+	contact_menu
+	contact_action(contact_list[id])
 	puts "====================================="
 	puts ""
 end
+
+def contact_action(contact)
+	action = gets.chomp.to_i
+	if(action == 1)
+		puts "Digite seu comentario:"
+		contact.addComment($id_comment, gets.chomp)
+		$id_comment += 1
+	end
+
+	if(action == 2)
+		contact.comments.each do |id, comment|
+			puts "-------------------------------------"
+			puts "#{id}) #{comment}"
+			puts "-------------------------------------"
+		end
+	end
+end
+
 
 
 
 contact_list = Hash.new()
 id_count = 1
+$id_comment = 1
 main_menu
 action = gets.chomp.to_i
 
