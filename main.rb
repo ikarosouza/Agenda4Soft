@@ -2,6 +2,7 @@ require_relative "Contact"
 
 
 def main_menu
+	system("clear")
 	puts "====================================="
 	puts "Digite o numero da opcao desejada"
 	puts "1 - Adicionar Contato"
@@ -12,38 +13,41 @@ def main_menu
 end
 
 def contact_menu
-	puts ""
+	system("clear")
 	puts "Digite o numero da opcao desejada"
 	puts "1 - Deixar Comentario"
 	puts "2 - Listar Comentario"
-	puts "3 - Deletar Contato"
+	puts "3 - Voltar"
 	puts ""
 end
 
 def add_contact
+	system("clear")
 	puts "====================================="
-	puts "digite o nome"
+	puts "Digite o nome"
 	name = gets.chomp
 
-	puts "digite o telefone"
+	puts "Digite o telefone"
 	phone = gets.chomp
 
-	puts "digite o e-mail"
+	puts "Digite o e-mail"
 	email = gets.chomp
 
-	puts "digite o endereco"
+	puts "Digite o endereco"
 	adress = gets.chomp
 
 	contact = Contact.new(name, phone, email, adress)
 
 	puts "#{name} adicionado"
 	puts "====================================="
-	puts ""
+	puts "Aperte enter para continuar ..."
+	gets()
 
 	return contact
 end
 
 def list_contact(contact_list)
+	system("clear")
 	puts "====================================="
 	contact_list.each do |id, contact| 
 		puts "#{id}) #{contact.name}"
@@ -56,6 +60,7 @@ end
 
 def show_contact(contact_list)
 	id = gets.chomp.to_i
+	system("clear")
 	puts "====================================="
 	puts "nome: #{contact_list[id].name}"
 	puts "telefone: #{contact_list[id].phone}"
@@ -69,18 +74,30 @@ end
 
 def contact_action(contact)
 	action = gets.chomp.to_i
-	if(action == 1)
-		puts "Digite seu comentario:"
-		contact.addComment($id_comment, gets.chomp)
-		$id_comment += 1
-	end
-
-	if(action == 2)
-		contact.comments.each do |id, comment|
-			puts "-------------------------------------"
-			puts "#{id}) #{comment}"
-			puts "-------------------------------------"
+	
+	while(action != 3)
+		
+		if(action == 1)
+			puts "Digite seu comentario:"
+			contact.addComment($id_comment, gets.chomp)
+			$id_comment += 1
+			puts "Comentario adicionado"
+			puts "Aperte enter para continuar ..."
+			gets()
 		end
+
+		if(action == 2)
+			puts "Comentarios:"
+			contact.comments.each do |id, comment|
+				puts "-------------------------------------"
+				puts "#{id}) #{comment}"
+				puts "-------------------------------------"
+			end
+			puts "Aperte enter para continuar ..."
+			gets()
+		end
+		contact_menu
+		action = gets.chomp.to_i
 	end
 end
 
@@ -108,6 +125,7 @@ while (action != 3)
 	action = gets.chomp.to_i
 end
 
+system("clear")
 puts "====================================="
 puts "Volte sempre"
 puts "====================================="
